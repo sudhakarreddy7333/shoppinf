@@ -1,0 +1,23 @@
+{
+  "name": "shopping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudhakarreddy7333/shopping.git"
+  },
+  "author": "sudhakar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudhakarreddy7333/shopping/issues"
+  },
+  "homepage": "https://github.com/sudhakarreddy7333/shopping#readme"
+}
