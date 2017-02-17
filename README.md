@@ -1,1 +1,1 @@
-# shoppinf
+# shopping
