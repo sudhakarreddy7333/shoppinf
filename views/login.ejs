@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%= title %></title>
+        <script
+                src="https://code.jquery.com/jquery-3.1.1.min.js"
+                integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script src="//use.edgefonts.net/comfortaa.js"></script>
+        <style>
+            body {
+                font-family: comfortaa, sans-serif;
+            }
+        </style>
+        <script>
+            $(function(){
+                 $('#errorMessages').css("display","none");
+                $('#sfasdf').click(function(event){
+                    event.preventDefault();
+                    var user = {
+                        username : $('#username').val(),
+                        password : $('#password').val()
+                    };
+                    $.post("/login",user, function(data,sts){
+                        if(data.status === 'error'){
+                            $('#errorMessages').css("display","block");
+                            $('#errorMessages').text(data.description);
+                        }
+                        else if(data.status === 'success'){
+                            window.location.href = '/dashboard';
+                        }
+                        
+                    });
+                });
+            });
+
+
+        </script>
+    </head>
+    <body>
+        <div class="container-fluid" >
+            <div id = "forms">
+                <h3 id = "descrptn"><%= description %></h3>
+                <div class="jumbotron col-lg-4 col-md-4" >
+                    <div class="container">
+                        <div id = "errorMessages" class="row alert alert-danger">
+                            <%= errorMsg %> 
+                        </div>
+                        <form class="row" action = "login" method="post">
+                            <div class = "form-group">
+                                <label>Username</label>
+                                <input id = "username" class="form-control input-sm" type="text" placeholder="Ex sudhakarreddy99">  
+                            </div>
+                            <div class = "form-group">
+                                <label for="">Password</label>
+                                <input id = "password" class="form-control input-sm" type="password" placeholder="Ex Password@123">
+                            </div>
+                            <input id = "sfasdf" type="submit" class="btn col-lg-4 col-xs-12" value = "Login">
+                        </form> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>
