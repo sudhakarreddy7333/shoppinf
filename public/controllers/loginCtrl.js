@@ -1,4 +1,4 @@
-app.controller('loginCtrl',function($http,$location){
+app.controller('loginCtrl',function($http,$location,$timeout){
     var vm = this;
     vm.showErr = false;
     vm.showServerMesg = false;
@@ -10,6 +10,9 @@ app.controller('loginCtrl',function($http,$location){
             else if(res.data.status === 'error'){
                 vm.showServerMesg = true;
                 vm.serMsg = res.data.description;
+                $timeout(function(){
+                vm.showServerMesg = false;
+                },2000);
             }
         });
     };
