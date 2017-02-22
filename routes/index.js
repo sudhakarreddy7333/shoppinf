@@ -1,16 +1,8 @@
 var express = require('express');
-var Router = express.Router();
-Router.get('/', function(req,res,next){
-    var variablesObj = {
-        title : 'nodeJs',
-        description : 'Welcome log in to continue!',
-        displayerr : 'none',
-        errorMsg : ''
-    }; 
-    res.render('login',variablesObj);
-});
+var home = express();
 
-Router.post('/login', function(req,res,next){
+//LoginUser is an API
+home.post('/LoginUser', function(req,res,next){
     console.log(req.body);
     
     if(req.body.username === 'sudhakar12' && req.body.password === 'Abc12'){
@@ -21,47 +13,26 @@ Router.post('/login', function(req,res,next){
         });
     }
     else if(req.body.username === '' && req.body.password === ''){
-       var variablesObj = {
-            title : 'nodeJs',
-            description : 'Welcome log in to continue!',
-            displayerr : 'block',
-            errorMsg : 'Enter username and password'
-        };
          res.send({
             status : 'error',
             description : 'Enter username and password',
         }); 
     }
      else if(req.body.username === 'sudhakar12' && req.body.password === ''){
-       var variablesObj = {
-            title : 'nodeJs',
-            description : 'Welcome log in to continue!',
-            displayerr : 'block',
-            errorMsg : 'Enter username and password'
-        };
          res.send({
             status : 'error',
             description : 'Enter password',
         }); 
     }
     else {
-        var variablesObj = {
-            title : 'nodeJs',
-            description : 'Welcome log in to continue!',
-            displayerr : 'block',
-            errorMsg : 'Incorrect details'
-        }; 
         res.send({
             status : 'error',
-            description : 'Incorrect username/password',
+            description : 'Incorrect Username/Password',
         });  
     }
 });
 
-Router.get('/dashboard', function(req,res){
-    var variablesObj = {
-        message : "Welcome sudhakar"
-    }; 
-    res.render('home',variablesObj);
+home.get('/dashboard', function(req,res){
+    res.send('Hello');
 })
-module.exports = Router;
+module.exports = home;

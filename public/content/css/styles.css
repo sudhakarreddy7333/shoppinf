@@ -1,0 +1,14 @@
+body {
+    font-family: comfortaa, sans-serif;
+}
+#sdfsd {
+    min-height: 35px;
+    display: block;
+}
+#sdfsd span {
+    display: block;
+    background: #FA002E;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
