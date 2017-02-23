@@ -6,8 +6,4 @@ home.set('envrmnt',envmnt);
 
 home.use('/Authenticate',require('./authenticate/login'));
 
-home.get('/getEnv',function(req,res){
-    res.send(home.get('envrmnt'));
-});
-
 module.exports = home;

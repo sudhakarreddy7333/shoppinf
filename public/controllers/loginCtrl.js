@@ -2,10 +2,7 @@ app.controller('loginCtrl',function($http,$location,$timeout){
     var vm = this;
     vm.showErr = false;
     vm.showServerMesg = false;
-    $http.get('/api/getEnv').then(function(res){
-        console.log(res);
-    });
-        
+    
     vm.postLogin = function(){
         $http.post('/api/Authenticate/LoginUser',vm.user).then(function(res){
             if(res.data.status === 'success'){
