@@ -1,9 +1,8 @@
 var express = require('express');
-var ejs = require('ejs');
 var bodyParser = require('body-parser');
-var home = require('./routes');
-
+var home = require('./apis');
 var app = express();
+
 //app.engine('html', ejs.renderFile); helpful in using html template engine
 //app.set('view engine','html'); helpful in using html template engine
 

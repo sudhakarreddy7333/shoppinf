@@ -1,8 +1,7 @@
 var express = require('express');
-var home = express();
-
+var login = express();
 //LoginUser is an API
-home.post('/LoginUser', function(req,res,next){
+login.post('/LoginUser', function(req,res,next){
     console.log(req.body);
     
     if(req.body.username === 'sudhakar12' && req.body.password === 'Abc12'){
@@ -32,7 +31,4 @@ home.post('/LoginUser', function(req,res,next){
     }
 });
 
-home.get('/dashboard', function(req,res){
-    res.send('Hello');
-})
-module.exports = home;
+module.exports = login;
