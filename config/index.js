@@ -17,7 +17,7 @@ var configObj = {
 };
 
 if(process.argv[2] === undefined || process.argv[2] === null){
-    if(process.env.NODE_ENV === 'production'){
+    if(process.env.NODE_ENV){
         config.port = process.env.PORT;
         config.mode = process.env.NODE_ENV;
     }

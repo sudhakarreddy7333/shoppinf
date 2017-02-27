@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 
 app.use('/api', apis);
+console.log(process.env.NODE_ENV);
 
 switch(app.get('mode')) {
     case 'production' : 
@@ -24,7 +25,7 @@ switch(app.get('mode')) {
         break;
     case 'qa' : 
         console.log(app.get('mode') + ' mode activated');
-        db_path = 'mongodb://localhost/dev';
+        db_path = 'mongodb://localhost/qa';
         break;
     case 'dev' : 
         console.log(app.get('mode') + ' mode activated');
