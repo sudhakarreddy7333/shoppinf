@@ -20,7 +20,7 @@ app.use('/api', apis);
 switch(app.get('mode')) {
     case 'production' : 
         console.log(app.get('mode') + ' mode activated');
-        db_path = 'mongodb://sudhakar:sudhakar@ds161109.mlab.com:61109/nodebasic;
+        db_path = 'mongodb://sudhakar:sudhakar@ds161109.mlab.com:61109/nodebasic';
         break;
     case 'qa' : 
         console.log(app.get('mode') + ' mode activated');
