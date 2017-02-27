@@ -5,7 +5,6 @@ var app = express();
 var config = require('./config');
 var mongoose = require('mongoose');
 var chalk = require('chalk');
-//var db_path = 'mongodb://sudhakar:sudhakar@ds161109.mlab.com:61109/nodebasic';
 var db_path = '';
 
 //app.engine('html', ejs.renderFile); helpful in using html template engine
