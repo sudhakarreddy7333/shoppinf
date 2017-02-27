@@ -1,1 +1,1 @@
-web: node ./bin/www production
+web: node ./bin/www
