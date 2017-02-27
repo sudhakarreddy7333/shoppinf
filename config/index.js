@@ -22,17 +22,17 @@ if(process.argv[2] === undefined || process.argv[2] === null){
         config.mode = process.env.NODE_ENV;
     }
     else {
-        config.port = configObj.dev.port;
+        config.port = configObj.dev.port || 8080;
         config.mode = configObj.dev.mode;
     }
 }
 else if(process.argv[2] === 'dev' || process.argv[2] === 'qa' || process.argv[2] === 'production') {
-    config.port = configObj[process.argv[2]].port;
+    config.port = configObj[process.argv[2]].port || 8080;
     config.mode = configObj[process.argv[2]].mode;
 }
 else {
     console.log('Invalid config mode switching to dev mode..');
-    config.port = configObj.dev.port;
+    config.port = configObj.dev.port || 8080;
     config.mode = configObj.dev.mode;
 }
 
