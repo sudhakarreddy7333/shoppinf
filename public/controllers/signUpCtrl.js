@@ -5,6 +5,7 @@ app.controller('signUpCtrl',function($http,$location,$timeout){
         $http.post('/api/Authenticate/signup',vm.user).then(function(res){
             if(res.data.status === 'success'){
                 vm.userCreationSuccess = true;
+                vm.username = res.data.username;
             }
             else if(res.data.status === 'error'){
             }
