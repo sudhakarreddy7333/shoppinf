@@ -5,28 +5,30 @@
             <div class = "form-group">
                 <label>Username</label>
                 <input id = "username" name = "username" class="form-control input-sm" type="text" placeholder="Ex sudhakarreddy99" ng-model = "lc.user.username" required>
-                <div ng-show = "loginForm.$submitted">
+                <div ng-show = "loginForm.$submitted" class="error">
                     <span ng-show = "loginForm.username.$error.required">Username is required</span>
+                    <span ng-show = "lc.userExists">Username is not available</span>
                 </div>  
             </div>
             <div class = "form-group">
                 <label for="">Password</label>
                 <input id = "password" name = "password" class="form-control input-sm" type="password" ng-model = "lc.user.password" placeholder="Ex Password@123" required>
-                <div ng-show = "loginForm.$submitted">
+                <div class="error" ng-show = "loginForm.$submitted">
                     <span ng-show = "loginForm.password.$error.required">Password is required</span>
                 </div> 
             </div>
             <div class = "form-group">
                 <label for="">Confirm Password</label>
-                <input id = "confpassword" name = "confpassword" class="form-control input-sm" type="password" ng-model = "lc.user.confpassword" placeholder="Ex Password@123" required>
-                <div ng-show = "loginForm.$submitted">
-                    <span ng-show = "loginForm.confpassword.$error.required">Confirm password</span>
+                <input id = "confpassword" name = "confpassword" class="form-control input-sm" type="password" ng-model = "lc.user.confpassword" placeholder="Ex Password@123" compare-pwd = "loginForm.password.$viewValue" required>
+                <div class="error" ng-show = "loginForm.$submitted">
+                    <span ng-show = "loginForm.confpassword.$error.required && !checkingPwdEquality">Confirm password</span>
+                    <span ng-show = "loginForm.confpassword.$error.checkingPwdEquality && !loginForm.confpassword.$error.required">Password dosent match</span>
                 </div> 
             </div>
             <div class = "form-group">
                 <label for="">Email Id</label>
                 <input id = "email" name = "email" class="form-control input-sm" type="email" ng-model = "lc.user.email" placeholder="Ex myemail@yourdomain.com" required>
-                <div ng-show = "loginForm.$submitted">
+                <div class="error" ng-show = "loginForm.$submitted">
                     <span ng-show = "loginForm.email.$error.required">Email Id is required</span>
                     <span ng-show = "loginForm.email.$error.email">Email Id is not valid</span>
                 </div> 

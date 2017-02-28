@@ -61,12 +61,17 @@ authenticate.post('/signup',function(req,res){
             newUser.save(function(err){
                 if(err){
                     console.log('User cannot be created', err);
+                    res.send({
+                        status : 'UserExits'
+                    })
                 }
-                console.log('New User has been added successfully');
-                res.send({
-                    status : 'success',
-                    username : req.body.username
-                })
+                else {
+                    console.log('New User has been added successfully');
+                    res.send({
+                        status : 'success',
+                        username : req.body.username
+                    });
+                }
             });
         });
     });

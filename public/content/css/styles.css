@@ -19,3 +19,6 @@ body {
     float : none;
     margin: 250px auto;
 }
+.error span {
+    color: red;
+}
