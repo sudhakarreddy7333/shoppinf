@@ -12,3 +12,10 @@ body {
     padding: 5px;
     text-align: center;
 }
+.successuser {
+    text-align: center;
+}
+.col-centered {
+    float : none;
+    margin: 250px auto;
+}

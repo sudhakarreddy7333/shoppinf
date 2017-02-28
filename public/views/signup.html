@@ -34,8 +34,11 @@
             <input type="submit" class="btn btn-primary col-lg-4 col-xs-12" value = "Sign Up">
         </form>
     </div>
-    <div class="col-lg-offset-4 col-lg-4" ng-if = "lc.userCreationSuccess">
-    Welcome {{lc.username}} please <a href="#!/">login</a> to continue        
+
+    <div class="col-lg-offset-4 col-lg-4 panel panel-default col-centered" ng-if = "lc.userCreationSuccess">
+        <div class="panel-body successuser">
+            <span style = "color : green ; font-size : 30px" class="glyphicon glyphicon-ok-circle"></span> <span style=" vertical-align : super">Signup successful, Welcome <span style="color : violet ; font-weight : bold">{{lc.username}}</span> please <a href="#!/">login</a> to continue</span>           
+        </div>
     </div>
 
 </div>
