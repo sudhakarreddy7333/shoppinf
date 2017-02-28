@@ -6,5 +6,8 @@ app.config(function($routeProvider){
    })
    .when("/dashboard",{
        templateUrl : "views/home.html",
-   }); 
+   })
+   .when("/signup",{
+       templateUrl : "views/signup.html"
+   })
 });
