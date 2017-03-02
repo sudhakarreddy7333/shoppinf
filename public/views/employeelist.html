@@ -1,0 +1,60 @@
+<div class="container-fluid" ng-controller = "employeeCtrl as ec">
+    <div class = "col-lg-offset-1 col-lg-10" ng-show = "ec.showCreateEmp">
+        <h4>Add Employee</h4>
+        <table class="table table-responsive table-condensed table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="form-control" ng-model = "ec.emp.name"></td>
+                <td><input type="text" class="form-control" ng-model = "ec.emp.email"></td>
+                <td><input type="text" class="form-control" ng-model = "ec.emp.dept"></td>
+                <td><select name="" class="form-control" id="" ng-model = "ec.emp.gender">
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    </select></td>
+                <td><input type="date" class="form-control" ng-blur= "ec.calcAge()" ng-model = "ec.emp.dob"></td>
+                <td><input type="number" class="form-control" ng-model = "ec.emp.age"></td>
+                <td><button class="btn" class="form-control" ng-click = "ec.addEmp()">Add</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-offset-1 col-lg-10" ng-show = "ec.showEmpList">
+        <h4>Employee Details</h4>
+        <table class="table table-responsive table-condensed table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <!--                <th>Actions</th>-->
+            </tr>
+            <tr ng-repeat = "emp in ec.employeesList">
+                <td>{{emp.name}}</td>
+                <td>{{emp.email}}</td>
+                <td>{{emp.dept}}</td>
+                <td>{{emp.gender}}</td>
+                <td>{{emp.age}}</td>
+                <!--                <td><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span></td>-->
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-lg-offset-4 col-lg-4 panel panel-info col-centered" ng-show = "!ec.showEmpList && !ec.showCreateEmp">
+       <div class="row panel-heading">
+           Aww.. no records
+       </div>
+        <div class="panel-body successuser">
+          <span>  Looks like there are no employees in your organisation.. <a href="" ng-click = "ec.showCreateEmp = 'true'">Click here</a> to add one </span> 
+        </div>
+    </div>
+
+</div>

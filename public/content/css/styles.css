@@ -22,3 +22,6 @@ body {
 .error span {
     color: red;
 }
+table th {
+    background: #a1bae2;
+}

@@ -55,7 +55,8 @@ authenticate.post('/signup',function(req,res){
             var newUserDetails = {
                 "username" : req.body.username, 
                 "password" : req.body.password, 
-                "email" : req.body.email
+                "email" : req.body.email,
+                "createdOn" : Date.now()
             };
             var newUser = new User(newUserDetails);
             newUser.save(function(err){
