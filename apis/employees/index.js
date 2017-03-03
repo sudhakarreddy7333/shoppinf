@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var Employee = require('../../models/employees');
 var emp = express();
 emp.post('/add', function(req, res){
@@ -27,6 +28,51 @@ emp.post('/add', function(req, res){
     })
     console.log(req.body);
 });
+
+emp.post('/edit', function(req,res){
+    console.log('Edit Employee');
+    var newEmpDet = {
+        username : req.body.username,
+        name : req.body.name,
+        email : req.body.email,
+        dept : req.body.dept,
+        gender : req.body.gender,
+        age : req.body.age,
+        dob : req.body.dob
+    };
+    console.log(req.body._id);
+    Employee.update({ "_id": mongoose.Types.ObjectId(req.body._id)}, newEmpDet, function (err, emp) {
+        if (err) {
+            console.log('Could not find Employee' , err);
+            return "";
+        }
+        console.log('Editing emp');
+
+        res.send({
+            status : 'success',
+            Data : emp
+        });
+
+    });
+});
+
+emp.post('/delete', function(req,res){
+    console.log('Delete Employee');
+    Employee.remove({ _id: req.body._id }, function(err,emp) {
+        if (err) {
+            console.log('Could not delete Employee' , err);
+            return "";
+        }
+        else {
+            console.log('Employee Deleted');
+            res.send({
+                status : 'success',
+                Data : emp
+            });
+        }
+    });
+});
+
 
 emp.get('/list/:username', function(req,res){
     var username = req.params.username;

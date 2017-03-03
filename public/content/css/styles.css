@@ -23,5 +23,9 @@ body {
     color: red;
 }
 table th {
-    background: #a1bae2;
+    background: #c6c6c6;
+}
+.emplist td span.glyphicon {
+    margin-right: 10px;
+    cursor: pointer;
 }

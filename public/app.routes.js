@@ -4,9 +4,6 @@ app.config(function($routeProvider){
        templateUrl : "views/login.html",
        controllerAs : "lc"
    })
-   .when("/dashboard",{
-       templateUrl : "views/home.html",
-   })
    .when("/signup",{
        templateUrl : "views/signup.html"
    })
