@@ -1,18 +1,18 @@
-<div class="container-fluid" ng-controller = "employeeCtrl as ec">
+<div class="container-fluid" ng-controller = "addEmployeeCtrl as ad">
     <h4 style="margin-top : 0px">Add Employee</h4>
     <form>
 
         <div class="form-group">
             <label for="">Name</label> 
-            <input type="text" class="form-control" ng-model = "ec.emp.name">
+            <input type="text" class="form-control" ng-model = "ad.emp.name">
         </div>
         <div class="form-group">
             <label for="">Email</label> 
-            <input type="text" class="form-control" ng-model = "ec.emp.email">
+            <input type="text" class="form-control" ng-model = "ad.emp.email">
         </div>
         <div class="form-group">
             <label for="">Department</label> 
-            <select name="" class="form-control" id="" ng-model = "ec.emp.dept">
+            <select name="" class="form-control" id="" ng-model = "ad.emp.dept">
                 <option value="">Select Dept</option>
                 <option>ECE</option>
                 <option>CSE</option>
@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
             <label for="">Gender</label> 
-            <select name="" class="form-control" id="" ng-model = "ec.emp.gender">
+            <select name="" class="form-control" id="" ng-model = "ad.emp.gender">
                 <option value="">Select Gender</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -32,12 +32,12 @@
         </div>
         <div class="form-group">
             <label for="">DOB</label> 
-            <input type="date" class="form-control" ng-blur= "ec.calcAge()" ng-model = "ec.emp.dob">
+            <input type="date" class="form-control" ng-blur= "ad.calcAge()" ng-model = "ad.emp.dob">
         </div>
         <div class="form-group">
             <label for="">Age</label> 
-            <input type="number" class="form-control" ng-model = "ec.emp.age">
+            <input type="number" class="form-control" ng-model = "ad.emp.age">
         </div>
-        <button class="btn" class="form-control" ng-click = "ec.addEmp('{{ec.addUserBtn}}')">{{ec.addUserBtn}}</button>
+        <button class="btn" class="form-control" ng-click = "ad.addEmp('{{ad.addUserBtn}}')">{{ad.addUserBtn}}</button>
     </form>
 </div>

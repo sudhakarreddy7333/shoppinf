@@ -1,7 +1,6 @@
 app.controller('employeeCtrl', function($http,genService){
     vm = this;
     vm.emp = {};
-    vm.showEmpList = false;
     vm.addUserBtn = 'Add';
     vm.calcAge = function(){
         var ageDifMs = Date.now() - vm.emp.dob.getTime();
@@ -24,6 +23,7 @@ app.controller('employeeCtrl', function($http,genService){
                 if(res.data.status === 'success'){
                     vm.emp = {};
                     vm.addUserBtn = 'Add';
+                    $('#editEmp').modal('hide');
                     getEmployeesList();
                 }
             });
@@ -32,9 +32,9 @@ app.controller('employeeCtrl', function($http,genService){
 
     var getEmployeesList = function(){
         $http.get('/api/employees/list').then(function(res){
+            vm.showElist = true;
             if(res.data.status === 'success'){
                 vm.showEmpList = true;
-                vm.showCreateEmp = true;
                 vm.employeesList = res.data.Data;
             }
             else if(res.data.status === 'NoRecords'){
@@ -48,6 +48,7 @@ app.controller('employeeCtrl', function($http,genService){
         vm.emp = angular.copy(emp);
         vm.emp.dob = new Date(vm.emp.dob); 
         vm.addUserBtn = 'Update';
+        $('#editEmp').modal('show');
     };
 
     vm.deleteEmployee = function(id){
