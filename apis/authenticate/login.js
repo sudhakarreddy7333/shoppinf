@@ -1,6 +1,7 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
 var User = require('../../models/users');
+var Token = require('../../models/webtoken');
 var authenticate = express();
 //LoginUser is an API
 authenticate.post('/LoginUser', function(req,res,next){
@@ -12,9 +13,11 @@ authenticate.post('/LoginUser', function(req,res,next){
             if(data[0]!== undefined && data.length >= 0){
                 bcrypt.compare(req.body.password, data[0].password, function(err, response) {
                     if(response === true){
+                        var token = Token.createToken(req.body.username);
                         res.send({
                             status : 'success',
                             description : null,
+                            token : Token.createToken(req.body)
                         });
                     }
                     else {

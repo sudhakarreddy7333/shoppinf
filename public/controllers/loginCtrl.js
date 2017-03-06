@@ -1,4 +1,4 @@
-app.controller('loginCtrl',function($http,$location,$timeout,genService,$scope){
+app.controller('loginCtrl',function($http,$location,$timeout,genService,$scope,authService){
     var vm = this;
     vm.showErr = false;
     vm.showServerMesg = false;
@@ -6,7 +6,10 @@ app.controller('loginCtrl',function($http,$location,$timeout,genService,$scope){
     vm.postLogin = function(){
         $http.post('/api/Authenticate/LoginUser',vm.user).then(function(res){
             if(res.data.status === 'success'){
-                $location.path('/employeesList');
+                var authToken = res.data.token;
+                authService.setLogin('true');
+                authService.addTokenInfo(authToken);
+                $location.path('/');
                 genService.setUsername(vm.user.username);
                 $scope.$emit('usernameUpdated', genService.getUsername());
             }
@@ -20,3 +23,4 @@ app.controller('loginCtrl',function($http,$location,$timeout,genService,$scope){
         });
     };
 });
+

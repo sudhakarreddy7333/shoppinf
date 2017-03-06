@@ -1,8 +1,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var Employee = require('../../models/employees');
+var Token = require('../../models/webtoken');
 var emp = express();
-emp.post('/add', function(req, res){
+
+emp.post('/add',Token.verifyToken, function(req, res){
     var newEmpDet = {
         username : req.body.username,
         name : req.body.name,
@@ -29,7 +31,7 @@ emp.post('/add', function(req, res){
     console.log(req.body);
 });
 
-emp.post('/edit', function(req,res){
+emp.post('/edit',Token.verifyToken, function(req,res){
     console.log('Edit Employee');
     var newEmpDet = {
         username : req.body.username,
@@ -56,7 +58,7 @@ emp.post('/edit', function(req,res){
     });
 });
 
-emp.post('/delete', function(req,res){
+emp.post('/delete',Token.verifyToken, function(req,res){
     console.log('Delete Employee');
     Employee.remove({ _id: req.body._id }, function(err,emp) {
         if (err) {
@@ -74,9 +76,8 @@ emp.post('/delete', function(req,res){
 });
 
 
-emp.get('/list/:username', function(req,res){
-    var username = req.params.username;
-
+emp.get('/list', Token.verifyToken, function(req,res){ 
+    var username = req.body.username;
     // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
     Employee.find({ "username": username }, function (err, emp) {
         if (err) {
@@ -97,4 +98,5 @@ emp.get('/list/:username', function(req,res){
         }
     });
 });
+
 module.exports = emp;

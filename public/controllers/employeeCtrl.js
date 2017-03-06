@@ -3,15 +3,12 @@ app.controller('employeeCtrl', function($http,genService){
     vm.emp = {};
     vm.showEmpList = false;
     vm.addUserBtn = 'Add';
-    vm.username = genService.getUsername();
-    vm.username.username = genService.getUsername();
     vm.calcAge = function(){
         var ageDifMs = Date.now() - vm.emp.dob.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         vm.emp.age = Math.abs(ageDate.getUTCFullYear() - 1970);
     };
     vm.addEmp = function(action){
-        vm.emp.username = vm.username;
         console.log(action);
         if(vm.addUserBtn === 'Add'){
             $http.post('api/employees/add',vm.emp).then(function(res){
@@ -34,7 +31,7 @@ app.controller('employeeCtrl', function($http,genService){
     };
 
     var getEmployeesList = function(){
-        $http.get('/api/employees/list/'+vm.username).then(function(res){
+        $http.get('/api/employees/list').then(function(res){
             if(res.data.status === 'success'){
                 vm.showEmpList = true;
                 vm.showCreateEmp = true;
