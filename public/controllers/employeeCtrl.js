@@ -7,8 +7,7 @@ app.controller('employeeCtrl', function($http,genService){
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         vm.emp.age = Math.abs(ageDate.getUTCFullYear() - 1970);
     };
-    vm.addEmp = function(action){
-        console.log(action);
+    vm.addEmp = function(){
         if(vm.addUserBtn === 'Add'){
             $http.post('api/employees/add',vm.emp).then(function(res){
                 if(res.data.status === 'success'){

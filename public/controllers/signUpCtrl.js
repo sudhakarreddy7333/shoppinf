@@ -1,9 +1,12 @@
-app.controller('signUpCtrl',function($http,$location,$timeout){
+app.controller('signUpCtrl',function($http,$location,$timeout,$filter){
     var vm = this;
     vm.userCreationSuccess = false;
     vm.userExists = false;
+    vm.newUser = {};
     vm.postLogin = function(){
-        $http.post('/api/Authenticate/signup',vm.user).then(function(res){
+        vm.newUser = angular.copy(vm.user);
+        vm.newUser.username = $filter('lowercase')(vm.newUser.username);
+        $http.post('/api/Authenticate/signup',vm.newUser).then(function(res){
             if(res.data.status === 'success'){
                 vm.userCreationSuccess = true;
                 vm.username = res.data.username;

@@ -28,6 +28,7 @@ table th {
     min-width: 320px;
     overflow-x: scroll;
     min-height: 500px;
+    max-height: 500px;
 }
 th, td { min-width: 40px; }
 
@@ -41,9 +42,9 @@ th, td { min-width: 40px; }
 }
 @media screen and (max-width: 768px) {
     body {
-        font-size: 12px;
+        font-size: 13px;
     }
     h3,h2,h1,h4,h5,h6 {
-        font-size: 12px;
+        font-size: 13px;
     }
 }
