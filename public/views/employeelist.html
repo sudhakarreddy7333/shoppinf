@@ -2,24 +2,27 @@
     <div ng-show = "ec.showElist">
         <div ng-show = "ec.showEmpList">
             <h4>Employee Details</h4>
-            <table class="table table-responsive table-condensed table-bordered emplist">
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Department</th>
-                    <th>Gender</th>
-                    <th>Age</th>
-                    <th>Actions</th>
-                </tr>
-                <tr ng-repeat = "emp in ec.employeesList">
-                    <td>{{emp.name}}</td>
-                    <td>{{emp.email}}</td>
-                    <td>{{emp.dept}}</td>
-                    <td>{{emp.gender}}</td>
-                    <td>{{emp.age}}</td>
-                    <td><span class="glyphicon glyphicon-pencil" data-toggle="modal" ng-click = "ec.editEmployee(emp)"></span><span class="glyphicon glyphicon-trash" ng-click = "ec.deleteEmployee(emp._id)"></span></td>
-                </tr>
-            </table>
+            <div class = "empTableDiv">
+                <table class="table table-responsive table-condensed table-bordered emplist">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat = "emp in ec.employeesList">
+                        <td>{{emp.name}}</td>
+                        <td>{{emp.email}}</td>
+                        <td>{{emp.dept}}</td>
+                        <td>{{emp.gender}}</td>
+                        <td>{{emp.age}}</td>
+                        <td><span class="glyphicon glyphicon-pencil" data-toggle="modal" ng-click = "ec.editEmployee(emp)"></span><span class="glyphicon glyphicon-trash" ng-click = "ec.deleteEmployee(emp._id)"></span></td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
 
         <div class="col-lg-offset-4 col-lg-4 panel panel-info col-centered" ng-show = "!ec.showEmpList">

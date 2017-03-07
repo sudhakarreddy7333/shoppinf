@@ -1,11 +1,9 @@
-body {
-    font-family: comfortaa, sans-serif;
-}
-#sdfsd {
+
+#loginErrorMsgs {
     min-height: 35px;
     display: block;
 }
-#sdfsd span {
+#loginErrorMsgs span {
     display: block;
     background: #FA002E;
     color: white;
@@ -25,6 +23,14 @@ body {
 table th {
     background: #c6c6c6;
 }
+
+.empTableDiv {
+    min-width: 320px;
+    overflow-x: scroll;
+    min-height: 500px;
+}
+th, td { min-width: 40px; }
+
 .emplist td span.glyphicon {
     margin-right: 10px;
     cursor: pointer;
@@ -32,4 +38,12 @@ table th {
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
     color: #fff;
     background-color: #1cb230;
+}
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 12px;
+    }
+    h3,h2,h1,h4,h5,h6 {
+        font-size: 12px;
+    }
 }
