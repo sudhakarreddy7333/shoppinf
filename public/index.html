@@ -17,7 +17,16 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">Employee Directory</a> 
                     </div>
-                    <p ng-if = "hc.showSignedUser" class="navbar-text navbar-right">Welcome <span style="color : #09b2ef"> {{hc.username}} </span></p>
+                    <div ng-if = "hc.showSignedUser" class="dropdown navbar-text navbar-right userDropDwn">
+                        <div id="dLabel" type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span style="color : #09b2ef"> {{hc.username}} </span>
+                            <span class="caret"></span>
+                        </div>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><a href="javascript:void(0)" ng-click = "hc.logoutUser()">Logout</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </nav>
         </div>
@@ -30,7 +39,7 @@
                 crossorigin="anonymous"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        
+
         <script src="content/lib/localStorage.js"></script>
         <script src="app.modules.js"></script>
         <script src="app.directives.js"></script>
@@ -44,6 +53,7 @@
         <script src="controllers/addEmployeeCtrl.js"></script>
         <script src="services/genService.js"></script>
         <script src="services/authService.js"></script>
-        
+        <script src="services/employeeService.js"></script>
+
     </body>
 </html>
