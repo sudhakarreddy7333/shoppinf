@@ -9,7 +9,7 @@ app.factory('authService', function($q,$location,localStorageService){
         localStorageService.set('authToken',token);
     };
     user.checkToken = function(){
-        if(loggedIn){
+        if(loggedIn === 'true'){
             var authToken = localStorageService.get('authToken');
             if(authToken===null){
                 $location.url('/login');
@@ -22,7 +22,7 @@ app.factory('authService', function($q,$location,localStorageService){
         else {
             if (localStorageService.isSupported) {
                 localStorageService.clearAll();
-                $location.url('/login');
+                $location.path('/login');
             }
         }
 

@@ -14,3 +14,9 @@ app.directive('comparePwd',function(){
         }
     }
 });
+
+app.directive('addEmpForm' , function(){
+    return {
+        templateUrl : 'views/shared/addemployee-form.html'
+    }
+});

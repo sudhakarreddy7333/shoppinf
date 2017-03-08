@@ -8,7 +8,6 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <script src="//use.edgefonts.net/comfortaa.js"></script>
         <link rel="stylesheet" href="content/css/styles.css">
     </head>
     <body ng-app = "employee" ng-controller = "homeCtrl as hc">
@@ -16,15 +15,18 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
                         <a class="navbar-brand" href="#">Employee Directory</a> 
                     </div>
-                    <p ng-if = "hc.showSignedUser" class="navbar-text navbar-right">Welcome <span style="color : #09b2ef"> {{hc.username}} </span></p>
+                    <div ng-if = "hc.showSignedUser" class="dropdown navbar-text navbar-right userDropDwn">
+                        <div id="dLabel" type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span style="color : #09b2ef"> {{hc.username}} </span>
+                            <span class="caret"></span>
+                        </div>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><a href="javascript:void(0)" ng-click = "hc.logoutUser()">Logout</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </nav>
         </div>
@@ -37,19 +39,21 @@
                 crossorigin="anonymous"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
         <script src="content/lib/localStorage.js"></script>
         <script src="app.modules.js"></script>
         <script src="app.directives.js"></script>
-        <script src="authenticationInceptors.js"></script>
+        <script src="services/authenticationInceptors.js"></script>
         <script src="app.routes.js"></script>
-        <script src="app.http.js"></script>
         <script src="controllers/loginCtrl.js"></script>
         <script src="controllers/signUpCtrl.js"></script>
         <script src="controllers/employeeCtrl.js"></script>
         <script src="controllers/homeCtrl.js"></script>
         <script src="controllers/dashboardCtrl.js"></script>
-        <script src="genService.js"></script>
-        <script src="authService.js"></script>
-        
+        <script src="controllers/addEmployeeCtrl.js"></script>
+        <script src="services/genService.js"></script>
+        <script src="services/authService.js"></script>
+        <script src="services/employeeService.js"></script>
+
     </body>
 </html>

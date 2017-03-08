@@ -1,33 +1,53 @@
 <div class="container-fluid" ng-controller = "employeeCtrl as ec">
-    <div ng-show = "ec.showEmpList">
-        <h4>Employee Details</h4>
-        <table class="table table-responsive table-condensed table-bordered emplist">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Department</th>
-                <th>Gender</th>
-                <th>Age</th>
-                <th>Actions</th>
-            </tr>
-            <tr ng-repeat = "emp in ec.employeesList">
-                <td>{{emp.name}}</td>
-                <td>{{emp.email}}</td>
-                <td>{{emp.dept}}</td>
-                <td>{{emp.gender}}</td>
-                <td>{{emp.age}}</td>
-                <td><span class="glyphicon glyphicon-pencil" ng-click = "ec.editEmployee(emp)"></span><span class="glyphicon glyphicon-trash" ng-click = "ec.deleteEmployee(emp._id)"></span></td>
-            </tr>
-        </table>
-    </div>
+    <div ng-show = "ec.showElist">
+        <div ng-show = "ec.showEmpList">
+            <h4>Employee Details</h4>
+            <div class = "empTableDiv">
+                <table class="table table-responsive table-condensed table-bordered emplist">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat = "emp in ec.employeesList">
+                        <td>{{emp.name}}</td>
+                        <td>{{emp.email}}</td>
+                        <td>{{emp.dept}}</td>
+                        <td>{{emp.gender}}</td>
+                        <td>{{emp.age}}</td>
+                        <td><span class="glyphicon glyphicon-pencil" data-toggle="modal" ng-click = "ec.editEmployee(emp)"></span><span class="glyphicon glyphicon-trash" ng-click = "ec.deleteEmployee(emp._id)"></span></td>
+                    </tr>
+                </table>
+            </div>
 
-    <div class="col-lg-offset-4 col-lg-4 panel panel-info col-centered" ng-show = "!ec.showEmpList && !ec.showCreateEmp">
-        <div class="row panel-heading">
-            Aww.. no records
         </div>
-        <div class="panel-body successuser">
-            <span>  Looks like there are no employees in your organisation.. <a href="" ng-click = "dc.onTabClick('views/addEmployee.html')">Click here</a> to add one </span> 
+
+        <div class="col-lg-offset-4 col-lg-4 panel panel-info col-centered" ng-show = "!ec.showEmpList">
+            <div class="row panel-heading">
+                Aww.. no records
+            </div>
+            <div class="panel-body successuser">
+                <span>  Looks like there are no employees in your organisation.. <a href="" ng-click = "dc.onTabClick('views/addEmployee.html')">Click here</a> to add one </span> 
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="editEmp">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Employee</h4>
+                    </div>
+                    <div class="modal-body">
+                        <add-emp-form></add-emp-form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
 </div>
+

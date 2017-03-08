@@ -1,40 +1,30 @@
-app.controller('employeeCtrl', function($http,genService){
+app.controller('employeeCtrl', function($http,genService,$scope,empService){
     vm = this;
     vm.emp = {};
-    vm.showEmpList = false;
     vm.addUserBtn = 'Add';
+    vm.validDobErr = false;
     vm.calcAge = function(){
-        var ageDifMs = Date.now() - vm.emp.dob.getTime();
-        var ageDate = new Date(ageDifMs); // miliseconds from epoch
-        vm.emp.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        var response = empService.calculateAge(vm.emp.dob);
+        vm.validDobErr = response.validDobErr;
+        vm.emp.age = response.empAge;
     };
-    vm.addEmp = function(action){
-        console.log(action);
-        if(vm.addUserBtn === 'Add'){
-            $http.post('api/employees/add',vm.emp).then(function(res){
-                if(res.data.status === 'success'){
-                    vm.emp = {};
-                    getEmployeesList();
+    vm.addEmp = function(){
+        if(!vm.validDobErr){
+            var response = empService.addEmp(vm.addUserBtn,vm.emp);
+            if(response.status === 'success'){
+                vm.addUserBtn = response.action;
+                if(vm.addUserBtn === 'Update'){
+                    getEmployeesList();  
                 }
-            });
-        }
-        else if(vm.addUserBtn === 'Update'){
-            vm.emp._id = vm.emp._id.toString();
-            $http.post('api/employees/edit',vm.emp).then(function(res){
-                if(res.data.status === 'success'){
-                    vm.emp = {};
-                    vm.addUserBtn = 'Add';
-                    getEmployeesList();
-                }
-            });
+            };
         }
     };
 
     var getEmployeesList = function(){
         $http.get('/api/employees/list').then(function(res){
+            vm.showElist = true;
             if(res.data.status === 'success'){
                 vm.showEmpList = true;
-                vm.showCreateEmp = true;
                 vm.employeesList = res.data.Data;
             }
             else if(res.data.status === 'NoRecords'){
@@ -48,6 +38,8 @@ app.controller('employeeCtrl', function($http,genService){
         vm.emp = angular.copy(emp);
         vm.emp.dob = new Date(vm.emp.dob); 
         vm.addUserBtn = 'Update';
+        $('#editEmp').modal('show');
+        vm.calcAge();
     };
 
     vm.deleteEmployee = function(id){
