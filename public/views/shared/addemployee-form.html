@@ -42,7 +42,8 @@
     </div>
     <div class="form-group">
         <label for="">DOB</label> 
-        <input type="date" name="dob" class="form-control" ng-blur= "ec.calcAge()" ng-model = "ec.emp.dob" required>
+        <input type="text" name="dob" class="form-control" placeholder="dd-mm-yyyy" ng-blur= "ec.calcAge()" ng-model = "ec.emp.dob" required>
+        
         <div class="error" ng-show = "addEmpForm.$submitted">
             <span ng-show = "addEmpForm.dob.$error.required && !ec.validDobErr">Select DOB</span>
         </div>
