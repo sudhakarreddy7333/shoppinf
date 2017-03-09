@@ -9,6 +9,7 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link rel="stylesheet" href="content/css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     </head>
     <body ng-app = "employee" ng-controller = "homeCtrl as hc">
         <div class="col-lg-12">
@@ -19,7 +20,7 @@
                     </div>
                     <div ng-if = "hc.showSignedUser" class="dropdown navbar-text navbar-right userDropDwn">
                         <div id="dLabel" type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span style="color : #09b2ef"> {{hc.username}} </span>
+                            <span style="color : #09b2ef" ng-bind = "hc.username"> </span>
                             <span class="caret"></span>
                         </div>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -54,6 +55,5 @@
         <script src="services/genService.js"></script>
         <script src="services/authService.js"></script>
         <script src="services/employeeService.js"></script>
-
     </body>
 </html>

@@ -1,6 +1,5 @@
 app.controller('dashboardCtrl',function(){
     var vm = this;
-
     vm.tabs = [
         {
             "tabUrl" : 'views/employeelist.html',

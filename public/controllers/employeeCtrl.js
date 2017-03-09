@@ -1,4 +1,4 @@
-app.controller('employeeCtrl', function($http,genService,$scope,empService){
+app.controller('employeeCtrl', function($http,genService,$scope,empService,$filter){
     vm = this;
     vm.emp = {};
     vm.addUserBtn = 'Add';
@@ -36,7 +36,7 @@ app.controller('employeeCtrl', function($http,genService,$scope,empService){
     vm.editEmployee = function(emp){
         vm.emp = {};
         vm.emp = angular.copy(emp);
-        vm.emp.dob = new Date(vm.emp.dob); 
+        vm.emp.dob = $filter('date')(vm.emp.dob, 'dd-MM-yyyy'); 
         vm.addUserBtn = 'Update';
         $('#editEmp').modal('show');
         vm.calcAge();
