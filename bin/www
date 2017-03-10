@@ -1,10 +1,9 @@
 var app = require('../app');
-var chalk = require('chalk');
 var config = require('../config');
 
 app.listen(config.port, function(err ,res){
     if(err){
     console.log(err);
     };
-    console.log(chalk.green('server running at port ' + config.port + ' in ' + config.mode + ' mode'));
+    console.log('server running at port ' + config.port + ' in ' + config.mode + ' mode');
 });
