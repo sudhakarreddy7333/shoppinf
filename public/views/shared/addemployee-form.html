@@ -1,19 +1,26 @@
 <form name = "addEmpForm" novalidate ng-submit = "addEmpForm.$valid ? ec.addEmp() : 'return false'">
+   
     <div class="form-group">
         <label for="">Name</label> 
-        <input name = "ename" type="text" placeholder="Ex sudhakar" class="form-control" ng-model = "ec.emp.name" required>
+        <input name = "ename" type="text" placeholder="Ex sudhakar" ng-pattern = "/^\S[a-zA-Z]+$/" ng-maxlength = "30" ng-minlength = "3" class="form-control" ng-model = "ec.emp.name" required>
         <div class="error" ng-show = "addEmpForm.$submitted">
             <span ng-show = "addEmpForm.ename.$error.required">Enter Employee Name</span>
+            <span ng-show = "addEmpForm.ename.$error.maxlength">Name cannot exceed 30 characters</span>
+            <span ng-show = "addEmpForm.ename.$error.minlength">Name should be atleast 3 characters</span>
+            <span ng-show = "addEmpForm.ename.$error.pattern">Name cannot be alphanumeric and should not contain special characters</span>
         </div> 
     </div>
+    
     <div class="form-group">
         <label for="">Email</label> 
-        <input name="email" type="email" placeholder="Ex sudhakar@gmail.com" class="form-control" ng-model = "ec.emp.email" required>
+        <input name="email" type="email" placeholder="Ex sudhakar@gmail.com" class="form-control" ng-model = "ec.emp.email" required ng-pattern = "/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/" ng-maxlength = "50">
         <div class="error" ng-show = "addEmpForm.$submitted">
             <span ng-show = "addEmpForm.email.$error.required">Enter Employee Email</span>
-            <span ng-show = "addEmpForm.email.$error.email">Enter valid Email</span>
+            <span ng-show = "addEmpForm.email.$error.email || addEmpForm.email.$error.pattern">Enter valid Email</span>
+            <span ng-show = "addEmpForm.email.$error.maxlength">Email Id cannot exceed 50 characters</span>
         </div>
     </div>
+    
     <div class="form-group">
         <label for="">Department</label> 
         <select name="dept" class="form-control" id="" ng-model = "ec.emp.dept" required>
@@ -43,21 +50,19 @@
     <div class="form-group">
         <label for="">DOB</label> 
         <input type="text" name="dob" class="form-control" placeholder="dd-mm-yyyy" ng-blur= "ec.calcAge()" ng-model = "ec.emp.dob" required>
-        
         <div class="error" ng-show = "addEmpForm.$submitted">
             <span ng-show = "addEmpForm.dob.$error.required && !ec.validDobErr">Select DOB</span>
         </div>
         <div class="error">
             <span  ng-show = "ec.validDobErr && !addEmpForm.dob.$error.required">Enter valid DOB and your age should be above 12</span>  
         </div>
-
     </div>
+    
     <div class="form-group">
         <label for="">Age</label> 
         <input type="number" placeholder="Ex 11" class="form-control" name="age" ng-model = "ec.emp.age" required>
         <div class="error" ng-show = "addEmpForm.$submitted">
             <span ng-show = "addEmpForm.age.$error.required">Enter Age</span>
-
         </div>
     </div>
     <!--        <button class="btn" class="form-control" ng-click = "ad.addEmp('{{ad.addUserBtn}}')">{{ad.addUserBtn}}</button>-->
