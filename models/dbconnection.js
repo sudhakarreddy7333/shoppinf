@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var chalk = require('chalk');
 var config = require('../config');
 var db_path = '';
 var db = function (){
@@ -20,10 +19,10 @@ var db = function (){
     //connecting to mongodb
     mongoose.connect(db_path);
     mongoose.connection.on('connected', function(){
-        console.log(chalk.yellow('Connected to ' + config.mode + ' db'));
+        console.log('Connected to ' + config.mode + ' db');
     });
     mongoose.connection.on('error', function(err){
-        console.log(chalk.red('Db connection failed from', err));
+        console.log('Db connection failed from', err);
     });
 };
 

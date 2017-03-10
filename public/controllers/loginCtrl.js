@@ -2,8 +2,9 @@ app.controller('loginCtrl',function($http,$location,$timeout,genService,$scope,a
     var vm = this;
     vm.showErr = false;
     vm.showServerMesg = false;
-
+    vm.submitBtn = 'Login';
     vm.postLogin = function(){
+        vm.submitBtn = 'Logging in...';
         $http.post('/api/Authenticate/LoginUser',vm.user).then(function(res){
             if(res.data.status === 'success'){
                 var authToken = res.data.token;
@@ -15,6 +16,7 @@ app.controller('loginCtrl',function($http,$location,$timeout,genService,$scope,a
             }
             else if(res.data.status === 'error'){
                 vm.showServerMesg = true;
+                vm.submitBtn = 'Login';
                 vm.serMsg = res.data.description;
                 $timeout(function(){
                     vm.showServerMesg = false;

@@ -4,10 +4,13 @@
         <form class="row" novalidate name = "loginForm" ng-submit = "loginForm.$valid ? lc.postLogin() : 'return false'">
             <div class = "form-group">
                 <label>Username</label>
-                <input id = "username" name = "username" class="form-control input-sm" type="text" placeholder="Ex sudhakarreddy99" ng-model = "lc.user.username" required>
+                <input id = "username" name = "username" class="form-control input-sm" type="text" placeholder="Ex sudhakarreddy99" ng-model = "lc.user.username" required ng-pattern = "/^\S[a-zA-Z0-9]+$/" ng-maxlength = "30" ng-minlength = "3">
                 <div ng-show = "loginForm.$submitted" class="error">
                     <span ng-show = "loginForm.username.$error.required">Username is required</span>
                     <span ng-show = "lc.userExists">Username is not available</span>
+                    <span ng-show = "loginForm.username.$error.pattern">Username should be alphanumeric and no special characters</span>
+                    <span ng-show = "loginForm.username.$error.maxlength">Username cannot exceed 30 characters</span>
+                    <span ng-show = "loginForm.username.$error.minlength">Username should be atleast 3 characters</span>
                 </div>  
             </div>
             <div class = "form-group">
@@ -27,10 +30,11 @@
             </div>
             <div class = "form-group">
                 <label for="">Email Id</label>
-                <input id = "email" name = "email" class="form-control input-sm" type="email" ng-model = "lc.user.email" placeholder="Ex myemail@yourdomain.com" required>
+                <input id = "email" name = "email" class="form-control input-sm" type="email" ng-model = "lc.user.email" placeholder="Ex myemail@yourdomain.com" required ng-pattern = "/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/" ng-maxlength = "50">
                 <div class="error" ng-show = "loginForm.$submitted">
                     <span ng-show = "loginForm.email.$error.required">Email Id is required</span>
-                    <span ng-show = "loginForm.email.$error.email">Email Id is not valid</span>
+                    <span ng-show = "loginForm.email.$error.email || loginForm.email.$error.pattern">Email Id is not valid</span>
+                    <span ng-show = "loginForm.email.$error.maxlength">Email Id cannot exceed 50 characters</span>
                 </div> 
             </div>
             <input type="submit" class="btn btn-primary col-lg-4 col-xs-12" value = "Sign Up">

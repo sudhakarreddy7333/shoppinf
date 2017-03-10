@@ -9,24 +9,21 @@ app.factory('authService', function($q,$location,localStorageService){
         localStorageService.set('authToken',token);
     };
     user.checkToken = function(){
-        if(loggedIn === 'true'){
-            var authToken = localStorageService.get('authToken');
-            if(authToken===null){
-                $location.url('/login');
-                deferred.reject('Invalid Token');
-            }
-            else{
-                deferred.resolve();
-            }
+        var authToken = localStorageService.get('authToken');
+        if(authToken===null){
+            $location.url('/login');
+            deferred.reject('Invalid Token');
         }
-        else {
-            if (localStorageService.isSupported) {
-                localStorageService.clearAll();
-                $location.path('/login');
-            }
+        else{
+            deferred.resolve();
         }
-
         return deferred.promise;
     };
+    user.logout = function(){
+        if (localStorageService.isSupported) {
+            localStorageService.clearAll();
+            $location.path('/login');
+        }
+    }
     return user;
 });
