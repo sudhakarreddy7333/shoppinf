@@ -15,7 +15,7 @@ app.controller('homeCtrl', function(genService,$scope,authService,$location,loca
     });
     vm.logoutUser = function(){
         authService.logout();
-        localStorageService.clear();
+        localStorageService.remove("empdirusername");
         vm.showSignedUser = false;
     }
 });
