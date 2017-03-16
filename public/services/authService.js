@@ -12,7 +12,7 @@ app.factory('authService', function($q,$location,localStorageService){
         var authToken = localStorageService.get('authToken');
         if(authToken===null){
             $location.url('/login');
-            deferred.reject('Invalid Token');
+            //deferred.reject('Invalid Token');
         }
         else{
             deferred.resolve();
